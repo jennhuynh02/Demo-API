@@ -10,7 +10,7 @@ const type = {};
 const division = {};
 
 // Reads through all csv files to create our database object
-const csvFiles = ['fogoDeChao.csv'];
+const csvFiles = ['fogoDeChao.csv', 'gamine.csv', 'hookfish.csv', 'zenYai.cssv'];
 
 for (const csvFile of csvFiles) {
   fs.createReadStream(csvFile)
