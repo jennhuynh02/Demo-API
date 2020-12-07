@@ -10,7 +10,7 @@ const type = {};
 const division = {};
 
 // Reads through all csv files to create our database object
-const csvFiles = ['fogoDeChao.csv', 'gamine.csv', 'hookfish.csv', 'zenYai.csv'];
+const csvFiles = ['fogoDeChao.csv'];
 
 for (const csvFile of csvFiles) {
   fs.createReadStream(csvFile)
@@ -23,10 +23,42 @@ for (const csvFile of csvFiles) {
       if (!country[row.Country]) country[row.Country] = [];
       country[row.Country].push(row)
 
-      if (!type[row.Type]) type[row.Type] = [];
-      type[row.Type].push(row)
+      if (!type[row.Type] && !type[row.employmentType]) {
+        if (row.Type) {
+          type[row.Type] = [];
+          type[row.Type].push(row)
+        }
+        if (row.employmentType) {
+          type[row.employmentType] = [];
+          type[row.employmentType].push(row)
+        }
+      } else {
+        if (row.Type) {
+          type[row.Type].push(row)
+        }
+        if (row.employmentType) {
+          type[row.employmentType].push(row)
+        }
+      }
 
-      if (!division[row.Division]) type[row.Type] = [];
+      if (!division[row.Division] && !division[row.department]) {
+        if (row.Division) {
+          division[row.Division] = [];
+          division[row.Division].push(row)
+        }
+        if (row.department) {
+          division[row.department] = [];
+          division[row.department].push(row)
+        }
+      } else {
+        if (row.Division) {
+          division[row.Division].push(row)
+        }
+        if (row.department) {
+          division[row.department].push(row)
+        }
+      }
+
       employees.push(row);
 
       const restaurantName = csvFile.split(".csv")[0];

@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
 })
 
 // Performs a specific search - for ex. Gender = Female, Country = USA
+// Note:  this complexity of this search will be - Time: O(n * m) Space: (n), whereas the other routes are constant
 router.post('/', (req, res) => {
   const filters = req.body;
   console.log(employees[0])
